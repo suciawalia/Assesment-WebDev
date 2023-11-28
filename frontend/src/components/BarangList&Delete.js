@@ -48,6 +48,7 @@ const BarangList = () => {
                 <td>{user.satuan}</td>
                 <td>{user.hargaSatuan}</td>
                 <td>{user.stok}</td>
+                <th>Action</th>
                 <td>
                   <Link to={`../edit/barang/${user.kodeBarang}`} className="button is-small is-info">Edit</Link>
                   <button onClick={() => deleteBarang(user.kodeBarang)} className="button is-small is-danger">Delete</button>
