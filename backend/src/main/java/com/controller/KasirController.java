@@ -43,4 +43,19 @@ public class KasirController {
         kasirService.updateKasirByKode(kode_kasir, kasirRequest);
         return ResponseEntity.ok("Kasir dengan kode " + kode_kasir + " dan nama " + nama + " berhasil diupdate");
     }
+
+	@GetMapping("/kasir")
+	public List<Kasir> getAllKasir(){
+		return kasirService.getAllKasir();
+	}
+
+	@GetMapping("/kasir/{kode_kasir}")
+    public ResponseEntity<Kasir> getKasirByKode(@PathVariable String kode_kasir) {
+        Kasir kasir = kasirService.getKasirByKode(kode_kasir);
+        if (kasir != null) {
+            return ResponseEntity.ok(kasir);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
