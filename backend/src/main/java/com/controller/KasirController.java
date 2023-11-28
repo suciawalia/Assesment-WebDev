@@ -29,4 +29,18 @@ public class KasirController {
         kasirService.addKasir(kasirRequest);
 		return ResponseEntity.ok("Kasir dengan nama " +nama+ " berhasil ditambahkan");
 	}
+
+	@PostMapping("/kasir/update")
+	public ResponseEntity<String> updateKasir(@RequestBody Kasir kasirRequest){
+		String nama = kasirService.getKasirByKode(kasirRequest.getKode_kasir()).getNama();
+		kasirService.updateKasir(kasirRequest);
+		return ResponseEntity.ok("Kasir dengan nama " + nama + " berhasil diupdate");
+	}
+
+	@PutMapping("/kasir/update/{kode_kasir}")
+    public ResponseEntity<String> updateKasirByKode(@PathVariable String kode_kasir, @RequestBody Kasir kasirRequest) {
+        String nama = kasirService.getKasirByKode(kode_kasir).getNama();
+        kasirService.updateKasirByKode(kode_kasir, kasirRequest);
+        return ResponseEntity.ok("Kasir dengan kode " + kode_kasir + " dan nama " + nama + " berhasil diupdate");
+    }
 }
