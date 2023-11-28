@@ -58,4 +58,11 @@ public class KasirController {
             return ResponseEntity.notFound().build();
         }
     }
+
+	@DeleteMapping("/kasir/delete")
+	public ResponseEntity<String> deleteKasir(@RequestParam String kode_kasir){
+		String nama = kasirService.getKasirByKode(kode_kasir).getNama();
+		kasirService.deleteKasir(kode_kasir);
+		return ResponseEntity.ok("Kasir dengan nama " + nama + " berhasil dihapus");
+	}
 }
